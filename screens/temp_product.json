@@ -1,0 +1,12 @@
+[
+  {
+    "name":"tomato",
+    "Quantity":"500kg",
+    "description":"One of the most used vegetable"
+  },
+  {
+    "name":"potato",
+    "Quantity":"500kg",
+    "description":"One of the most used vegetable"
+  }
+]
