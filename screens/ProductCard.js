@@ -14,6 +14,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import firebase from "firebase";
+import { Alert } from "react-native-web";
 
 let customFonts = {
   "Bubblegum-Sans": require("../assets/fonts/BubblegumSans-Regular.ttf"),

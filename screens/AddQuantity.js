@@ -31,6 +31,10 @@ export default class AddQuantity extends React.Component {
       light_theme: true,
       fontsLoaded: false,
       quantity: 0,
+      kg10: 10,
+      kg25: 25,
+      kg50: 50,
+      kg100: 100,
       preview_image: this.props.route.params.preview_image,
       product_id: this.props.route.params.product_id,
     };
@@ -137,38 +141,94 @@ export default class AddQuantity extends React.Component {
             </Text>
           </View>
           <View style={styles.weightButtonContainer}>
-            <TouchableOpacity
-              style={styles.weightButton}
-              onPress={() => {
-                this.weightAction(10);
-              }}
-            >
-              <Text style={styles.sellText}>10 kg</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.weightButton}
-              onPress={() => {
-                this.weightAction(25);
-              }}
-            >
-              <Text style={styles.sellText}>25 Kg</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.weightButton}
-              onPress={() => {
-                this.weightAction(50);
-              }}
-            >
-              <Text style={styles.sellText}>50 Kg</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.weightButton}
-              onPress={() => {
-                this.weightAction(100);
-              }}
-            >
-              <Text style={styles.sellText}>100 kg</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  this.setState({ kg10: (this.state.kg10 += 10) });
+                }}
+              >
+                <Ionicons
+                  name={"add-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.weightButton}
+                onPress={() => {
+                  this.weightAction(this.state.kg10);
+                }}
+              >
+                <Text style={styles.sellText}>{this.state.kg10} Kg</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  this.setState({ kg25: (this.state.kg25 += 25) });
+                }}
+              >
+                <Ionicons
+                  name={"add-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.weightButton}
+                onPress={() => {
+                  this.weightAction(this.state.kg25);
+                }}
+              >
+                <Text style={styles.sellText}>{this.state.kg25} Kg</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  this.setState({ kg50: (this.state.kg50 += 50) });
+                }}
+              >
+                <Ionicons
+                  name={"add-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.weightButton}
+                onPress={() => {
+                  this.weightAction(this.state.kg50);
+                }}
+              >
+                <Text style={styles.sellText}>{this.state.kg50} Kg</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  this.setState({ kg100: (this.state.kg100 += 100) });
+                }}
+              >
+                <Ionicons
+                  name={"add-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.weightButton}
+                onPress={() => {
+                  this.weightAction(this.state.kg100);
+                }}
+              >
+                <Text style={styles.sellText}>{this.state.kg100} Kg</Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={{ flex: 0.08 }} />
         </View>
@@ -257,21 +317,23 @@ const styles = StyleSheet.create({
     fontSize: RFValue(25),
     marginLeft: RFValue(5),
   },
-  addQuantityContainer: {
-    width: RFValue(250),
+  buttonContainer: {
+    flexDirection: "row",
+  },
+  addButton: {
+    width: RFValue(40),
     height: RFValue(40),
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    backgroundColor: "#f5d142",
+    backgroundColor: "#e0f542",
     borderRadius: RFValue(30),
     marginTop: 10,
-    marginLeft: RFValue(40),
+    marginLeft: RFValue(-10),
   },
-  addQuantityText: {
-    color: "white",
-    fontFamily: "ArchitectsDaughter",
-    fontSize: RFValue(25),
+  icons: {
+    width: RFValue(30),
+    height: RFValue(30),
     marginLeft: RFValue(5),
   },
 });

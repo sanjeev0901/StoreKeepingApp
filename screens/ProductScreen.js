@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -31,6 +31,10 @@ export default class ProductScreen extends React.Component {
       light_theme: true,
       fontsLoaded: false,
       quantity: 0,
+      gram100: 100,
+      gram250: 250,
+      gram500: 500,
+      gram1000: 1000,
       preview_image: this.props.route.params.preview_image,
       product_id: this.props.route.params.product_id,
       sold: 0,
@@ -61,13 +65,13 @@ export default class ProductScreen extends React.Component {
       });
   };
 
-  async weightAction(grams) {
+  weightAction = async (grams) => {
     let quantity = this.state.quantity;
-    if (quantity - grams / 1000 <= 0) {
+    let kg = grams / 1000;
+    if (quantity == 0 || quantity <= kg) {
       Alert.alert(
         "Error",
-        "Weight is above the given quantity\n Available Quantity- " +
-          this.state.quantity,
+        "Weight is above the given quantity",
         [{ text: "OK" }],
         { cancelable: false }
       );
@@ -84,9 +88,15 @@ export default class ProductScreen extends React.Component {
           Alert.alert("Hurray", "Product Has been Sold", [{ text: "OK" }], {
             cancelable: false,
           });
+          this.setState({
+            gram100: 100,
+            gram250: 250,
+            gram500: 500,
+            gram1000: 1000,
+          });
         });
     }
-  }
+  };
 
   async _loadFontsAsync() {
     await Font.loadAsync(customFonts);
@@ -157,38 +167,97 @@ export default class ProductScreen extends React.Component {
             </Text>
           </View>
           <View style={styles.weightButtonContainer}>
-            <TouchableOpacity
-              style={styles.weightButton}
-              onPress={() => {
-                this.weightAction(100);
-              }}
-            >
-              <Text style={styles.sellText}>100 Grams</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.weightButton}
-              onPress={() => {
-                this.weightAction(250);
-              }}
-            >
-              <Text style={styles.sellText}>250 Grams</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.weightButton}
-              onPress={() => {
-                this.weightAction(500);
-              }}
-            >
-              <Text style={styles.sellText}>500 Grams</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.weightButton}
-              onPress={() => {
-                this.weightAction(1000);
-              }}
-            >
-              <Text style={styles.sellText}>1 kg</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  this.setState({ gram100: (this.state.gram100 += 100) });
+                }}
+              >
+                <Ionicons
+                  name={"add-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.weightButton}
+                onPress={() => {
+                  this.weightAction(this.state.gram100);
+                }}
+              >
+                <Text style={styles.sellText}>{this.state.gram100} Grams</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  this.setState({ gram250: (this.state.gram250 += 250) });
+                }}
+              >
+                <Ionicons
+                  name={"add-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.weightButton}
+                onPress={() => {
+                  this.weightAction(this.state.gram250);
+                }}
+              >
+                <Text style={styles.sellText}>{this.state.gram250} Grams</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  this.setState({ gram500: (this.state.gram500 += 500) });
+                }}
+              >
+                <Ionicons
+                  name={"add-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.weightButton}
+                onPress={() => {
+                  this.weightAction(this.state.gram500);
+                }}
+              >
+                <Text style={styles.sellText}>{this.state.gram500} Grams</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  this.setState({ gram1000: (this.state.gram1000 += 1000) });
+                }}
+              >
+                <Ionicons
+                  name={"add-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.weightButton}
+                onPress={() => {
+                  this.weightAction(this.state.gram1000);
+                }}
+              >
+                <Text style={styles.sellText}>
+                  {this.state.gram1000 / 1000} Kg
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={{ flex: 0.08 }} />
         </View>
@@ -277,21 +346,23 @@ const styles = StyleSheet.create({
     fontSize: RFValue(25),
     marginLeft: RFValue(5),
   },
-  addQuantityContainer: {
-    width: RFValue(250),
+  buttonContainer: {
+    flexDirection: "row",
+  },
+  addButton: {
+    width: RFValue(40),
     height: RFValue(40),
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    backgroundColor: "#f5d142",
+    backgroundColor: "#e0f542",
     borderRadius: RFValue(30),
     marginTop: 10,
-    marginLeft: RFValue(40),
+    marginLeft: RFValue(-10),
   },
-  addQuantityText: {
-    color: "white",
-    fontFamily: "ArchitectsDaughter",
-    fontSize: RFValue(25),
+  icons: {
+    width: RFValue(30),
+    height: RFValue(30),
     marginLeft: RFValue(5),
   },
 });
