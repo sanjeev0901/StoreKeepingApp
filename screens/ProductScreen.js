@@ -67,8 +67,8 @@ export default class ProductScreen extends React.Component {
 
   weightAction = async (grams) => {
     let quantity = this.state.quantity;
-    let kg = grams / 1000;
-    if (quantity-kg<0) {
+    let setGrams = Math.round((grams + Number.EPSILON) * 100) / 100;
+    if (quantity - grams < 0) {
       Alert.alert(
         "Error",
         "Weight is above the given quantity",
@@ -81,7 +81,7 @@ export default class ProductScreen extends React.Component {
         .ref("products")
         .child(this.state.product_id)
         .update({
-          quantity: firebase.database.ServerValue.increment(-grams / 1000),
+          quantity: firebase.database.ServerValue.increment(-setGrams / 1000),
           sold: firebase.database.ServerValue.increment(1),
         })
         .then(() => {
