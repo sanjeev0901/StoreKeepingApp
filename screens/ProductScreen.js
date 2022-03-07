@@ -68,7 +68,7 @@ export default class ProductScreen extends React.Component {
   weightAction = async (grams) => {
     let quantity = this.state.quantity;
     let kg = grams / 1000;
-    if (quantity == 0 || quantity <= kg) {
+    if (quantity-kg<0) {
       Alert.alert(
         "Error",
         "Weight is above the given quantity",
