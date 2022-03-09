@@ -20,7 +20,7 @@ let customFonts = {
   "Bubblegum-Sans": require("../assets/fonts/BubblegumSans-Regular.ttf"),
 };
 
-//let product = require("./temp_product.json");
+let products = [];
 
 export default class Feed extends Component {
   constructor(props) {
@@ -51,17 +51,16 @@ export default class Feed extends Component {
   componentDidMount() {
     this._loadFontsAsync();
     this.fetchUser();
-    this.fetchStories();
+    this.fetchProducts();
   }
 
-  fetchStories = () => {
+  fetchProducts = () => {
     firebase
       .database()
       .ref("/products/")
       .on(
         "value",
         (snapshot) => {
-          let products = [];
           if (snapshot.val()) {
             Object.keys(snapshot.val()).forEach(function (key) {
               products.push({

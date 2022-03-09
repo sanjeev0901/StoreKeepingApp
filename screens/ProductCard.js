@@ -1,20 +1,9 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Platform,
-  StatusBar,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
-//import Ionicons from "react-native-vector-icons/Ionicons";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import firebase from "firebase";
-import { Alert } from "react-native-web";
 
 let customFonts = {
   "Bubblegum-Sans": require("../assets/fonts/BubblegumSans-Regular.ttf"),
@@ -117,7 +106,6 @@ export default class ProductCard extends Component {
               onPress={() => {
                 this.props.navigation.navigate("ProductScreen", {
                   name: this.state.product_data.name,
-                  //quantity: this.state.product_data.quantity,
                   description: this.state.product_data.description,
                   preview_image: this.state.product_data.preview_image,
                   product_id: this.state.product_id,
@@ -133,7 +121,6 @@ export default class ProductCard extends Component {
               onPress={() => {
                 this.props.navigation.navigate("AddQuantityScreen", {
                   name: this.state.product_data.name,
-                  //quantity: this.state.product_data.quantity,
                   description: this.state.product_data.description,
                   preview_image: this.state.product_data.preview_image,
                   product_id: this.state.product_id,

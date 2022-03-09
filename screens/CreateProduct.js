@@ -76,7 +76,16 @@ export default class CreateProduct extends Component {
         .database()
         .ref("/products/" + Math.random().toString(36).slice(2))
         .set(productData)
-        .then(function (snapshot) {});
+        .then(() => {
+          Alert.alert(
+            "Hurray",
+            "Product Has Been Added To Your Market",
+            [{ text: "OK" }],
+            {
+              cancelable: false,
+            }
+          );
+        });
       this.props.setUpdateToTrue();
       this.props.navigation.navigate("Feed");
       this.setState({ name: "", quantity: 0, description: "" });

@@ -8,9 +8,7 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  KeyboardAvoidingView,
   Alert,
-  TextInput,
 } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -95,6 +93,14 @@ export default class ProductScreen extends React.Component {
             gram1000: 1000,
           });
         });
+    }
+  };
+
+  minusButton = (grams, quantity) => {
+    if (grams <= quantity) {
+      return true;
+    } else {
+      return false;
     }
   };
 
@@ -186,10 +192,27 @@ export default class ProductScreen extends React.Component {
                   this.weightAction(this.state.gram100);
                 }}
               >
-                <Text style={styles.sellText}>{this.state.gram100} Grams</Text>
+                <Text style={styles.sellText}>
+                  {this.state.gram100 >= 1000
+                    ? this.state.gram100 / 1000
+                    : this.state.gram100}{" "}
+                  {this.state.gram100 >= 1000 ? "Kg" : "Grams"}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => {
+                  this.setState({ gram100: (this.state.gram100 -= 100) });
+                }}
+                disabled={this.minusButton(this.state.gram100, 100)}
+              >
+                <Ionicons
+                  name={"remove-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
             </View>
-
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.addButton}
@@ -209,7 +232,25 @@ export default class ProductScreen extends React.Component {
                   this.weightAction(this.state.gram250);
                 }}
               >
-                <Text style={styles.sellText}>{this.state.gram250} Grams</Text>
+                <Text style={styles.sellText}>
+                  {this.state.gram250 >= 1000
+                    ? this.state.gram250 / 1000
+                    : this.state.gram250}{" "}
+                  {this.state.gram250 >= 1000 ? "Kg" : "Grams"}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => {
+                  this.setState({ gram250: (this.state.gram250 -= 250) });
+                }}
+                disabled={this.minusButton(this.state.gram250, 250)}
+              >
+                <Ionicons
+                  name={"remove-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
             </View>
             <View style={styles.buttonContainer}>
@@ -231,7 +272,25 @@ export default class ProductScreen extends React.Component {
                   this.weightAction(this.state.gram500);
                 }}
               >
-                <Text style={styles.sellText}>{this.state.gram500} Grams</Text>
+                <Text style={styles.sellText}>
+                  {this.state.gram500 >= 1000
+                    ? this.state.gram500 / 1000
+                    : this.state.gram500}{" "}
+                  {this.state.gram500 >= 1000 ? "Kg" : "Grams"}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => {
+                  this.setState({ gram500: (this.state.gram500 -= 500) });
+                }}
+                disabled={this.minusButton(this.state.gram500, 500)}
+              >
+                <Ionicons
+                  name={"remove-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
             </View>
             <View style={styles.buttonContainer}>
@@ -256,6 +315,19 @@ export default class ProductScreen extends React.Component {
                 <Text style={styles.sellText}>
                   {this.state.gram1000 / 1000} Kg
                 </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => {
+                  this.setState({ gram1000: (this.state.gram1000 -= 1000) });
+                }}
+                disabled={this.minusButton(this.state.gram1000, 1000)}
+              >
+                <Ionicons
+                  name={"remove-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
             </View>
           </View>
@@ -359,6 +431,16 @@ const styles = StyleSheet.create({
     borderRadius: RFValue(30),
     marginTop: 10,
     marginLeft: RFValue(-10),
+  },
+  minusButton: {
+    width: RFValue(40),
+    height: RFValue(40),
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    backgroundColor: "#e0f542",
+    borderRadius: RFValue(30),
+    marginTop: 10,
   },
   icons: {
     width: RFValue(30),
