@@ -141,7 +141,9 @@ export default class AddQuantity extends React.Component {
               Name: {this.props.route.params.name}
             </Text>
             <Text style={styles.productDetailsText}>
-              Quantity: {this.state.quantity} Kg
+              Quantity:{" "}
+              {Math.round((this.state.quantity + Number.EPSILON) * 100) / 100}{" "}
+              Kg
             </Text>
             <Text style={styles.productDetailsText}>
               Description: {this.props.route.params.description}
@@ -168,10 +170,10 @@ export default class AddQuantity extends React.Component {
                 }}
               >
                 <Text style={styles.sellText}>
-                  {this.state.kg10 >= 100
-                    ? this.state.kg10 / 100
+                  {this.state.kg10 >= 1000
+                    ? this.state.kg10 / 1000
                     : this.state.kg10}{" "}
-                  {this.state.kg10 >= 100 ? "Ton" : "Kg"}
+                  {this.state.kg10 >= 1000 ? "Ton" : "Kg"}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -208,10 +210,10 @@ export default class AddQuantity extends React.Component {
                 }}
               >
                 <Text style={styles.sellText}>
-                  {this.state.kg25 >= 100
-                    ? this.state.kg25 / 100
+                  {this.state.kg25 >= 1000
+                    ? this.state.kg25 / 1000
                     : this.state.kg25}{" "}
-                  {this.state.kg25 >= 100 ? "Ton" : "Kg"}
+                  {this.state.kg25 >= 1000 ? "Ton" : "Kg"}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -248,10 +250,10 @@ export default class AddQuantity extends React.Component {
                 }}
               >
                 <Text style={styles.sellText}>
-                  {this.state.kg50 >= 100
-                    ? this.state.kg50 / 100
+                  {this.state.kg50 >= 1000
+                    ? this.state.kg50 / 1000
                     : this.state.kg50}{" "}
-                  {this.state.kg50 >= 100 ? "Ton" : "Kg"}
+                  {this.state.kg50 >= 1000 ? "Ton" : "Kg"}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -288,7 +290,10 @@ export default class AddQuantity extends React.Component {
                 }}
               >
                 <Text style={styles.sellText}>
-                  {this.state.kg100 / 100} Ton
+                  {this.state.kg100 >= 1000
+                    ? this.state.kg100 / 1000
+                    : this.state.kg100}{" "}
+                  {this.state.kg100 >= 1000 ? "Ton" : "Kg"}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity

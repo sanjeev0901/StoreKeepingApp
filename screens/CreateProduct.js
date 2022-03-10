@@ -146,11 +146,11 @@ export default class CreateProduct extends Component {
               <View style={{ height: RFValue(this.state.dropdownHeight) }}>
                 <DropDownPicker
                   items={[
-                    { label: "Image 1", value: "image_1" },
-                    { label: "Image 2", value: "image_2" },
-                    { label: "Image 3", value: "image_3" },
-                    { label: "Image 4", value: "image_4" },
-                    { label: "Image 5", value: "image_5" },
+                    { label: "Carrot", value: "image_1" },
+                    { label: "Onion", value: "image_2" },
+                    { label: "Potato", value: "image_3" },
+                    { label: "Raddish", value: "image_4" },
+                    { label: "Tomato", value: "image_5" },
                   ]}
                   defaultValue={this.state.previewImage}
                   containerStyle={{
