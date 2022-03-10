@@ -80,6 +80,13 @@ export default class AddQuantity extends React.Component {
     await Font.loadAsync(customFonts);
     this.setState({ fontsLoaded: true });
   }
+  minusButton = (kg, quantity) => {
+    if (kg <= quantity) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   componentDidMount() {
     this._loadFontsAsync();
@@ -160,7 +167,25 @@ export default class AddQuantity extends React.Component {
                   this.weightAction(this.state.kg10);
                 }}
               >
-                <Text style={styles.sellText}>{this.state.kg10} Kg</Text>
+                <Text style={styles.sellText}>
+                  {this.state.kg10 >= 100
+                    ? this.state.kg10 / 100
+                    : this.state.kg10}{" "}
+                  {this.state.kg10 >= 100 ? "Ton" : "Kg"}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => {
+                  this.setState({ kg10: (this.state.kg10 -= 10) });
+                }}
+                disabled={this.minusButton(this.state.kg10, 10)}
+              >
+                <Ionicons
+                  name={"remove-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
             </View>
             <View style={styles.buttonContainer}>
@@ -182,7 +207,25 @@ export default class AddQuantity extends React.Component {
                   this.weightAction(this.state.kg25);
                 }}
               >
-                <Text style={styles.sellText}>{this.state.kg25} Kg</Text>
+                <Text style={styles.sellText}>
+                  {this.state.kg25 >= 100
+                    ? this.state.kg25 / 100
+                    : this.state.kg25}{" "}
+                  {this.state.kg25 >= 100 ? "Ton" : "Kg"}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => {
+                  this.setState({ kg25: (this.state.kg25 -= 25) });
+                }}
+                disabled={this.minusButton(this.state.kg25, 25)}
+              >
+                <Ionicons
+                  name={"remove-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
             </View>
             <View style={styles.buttonContainer}>
@@ -204,7 +247,25 @@ export default class AddQuantity extends React.Component {
                   this.weightAction(this.state.kg50);
                 }}
               >
-                <Text style={styles.sellText}>{this.state.kg50} Kg</Text>
+                <Text style={styles.sellText}>
+                  {this.state.kg50 >= 100
+                    ? this.state.kg50 / 100
+                    : this.state.kg50}{" "}
+                  {this.state.kg50 >= 100 ? "Ton" : "Kg"}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => {
+                  this.setState({ kg50: (this.state.kg50 -= 50) });
+                }}
+                disabled={this.minusButton(this.state.kg50, 50)}
+              >
+                <Ionicons
+                  name={"remove-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
             </View>
             <View style={styles.buttonContainer}>
@@ -226,7 +287,22 @@ export default class AddQuantity extends React.Component {
                   this.weightAction(this.state.kg100);
                 }}
               >
-                <Text style={styles.sellText}>{this.state.kg100} Kg</Text>
+                <Text style={styles.sellText}>
+                  {this.state.kg100 / 100} Ton
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => {
+                  this.setState({ kg100: (this.state.kg100 -= 100) });
+                }}
+                disabled={this.minusButton(this.state.kg100, 100)}
+              >
+                <Ionicons
+                  name={"remove-circle"}
+                  size={RFValue(25)}
+                  style={styles.icons}
+                />
               </TouchableOpacity>
             </View>
           </View>
@@ -330,6 +406,16 @@ const styles = StyleSheet.create({
     borderRadius: RFValue(30),
     marginTop: 10,
     marginLeft: RFValue(-10),
+  },
+  minusButton: {
+    width: RFValue(40),
+    height: RFValue(40),
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    backgroundColor: "#e0f542",
+    borderRadius: RFValue(30),
+    marginTop: 10,
   },
   icons: {
     width: RFValue(30),
